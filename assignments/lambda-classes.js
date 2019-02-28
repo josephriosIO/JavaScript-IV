@@ -77,10 +77,6 @@ class Student extends Person {
       console.log(`please try again once you get a better score.`);
     }
   }
-
-  determineGradeForGraduation1(score) {
-    return (score += Math.floor(Math.random() * 50) + 1);
-  }
 }
 
 class ProjectManager extends Instructor {
