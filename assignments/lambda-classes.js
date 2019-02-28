@@ -30,6 +30,19 @@ class Instructor extends Person {
   grade(student, str) {
     console.log(`${student.name} receives a perfect score on ${str}.`);
   }
+
+  determineGrade(student, subject) {
+    let score = student.score;
+    let points = Math.floor(Math.random() * 50) + 1;
+
+    score += points;
+
+    if (score > 100) {
+      console.log(`${student.name} you got above a perfect score!`);
+    } else {
+      console.log(`${student.name} grade is a ${score} on ${subject}.`);
+    }
+  }
 }
 
 class Student extends Person {
@@ -37,7 +50,9 @@ class Student extends Person {
     super(studies);
     (this.previousBackground = studies.previousBackground),
       (this.className = studies.className),
-      (this.favSubject = studies.favSubject);
+      (this.favSubject = studies.favSubject),
+      (this.grade = studies.grade),
+      (this.score = studies.score);
   }
 
   listSubjects() {
@@ -52,6 +67,19 @@ class Student extends Person {
 
   sprintChallenge(test) {
     console.log(`${this.name} has begun sprint challenge on ${test}.`);
+  }
+
+  graduate() {
+    let finalScore = (this.score += Math.floor(Math.random() * 50) + 1);
+    if (finalScore > 70) {
+      console.log(`YOU GRADUATED CONGRATS`);
+    } else {
+      console.log(`please try again once you get a better score.`);
+    }
+  }
+
+  determineGradeForGraduation1(score) {
+    return (score += Math.floor(Math.random() * 50) + 1);
   }
 }
 
@@ -105,7 +133,8 @@ const liz_B = new Student({
   location: "Portland, OR",
   previousBackground: "Biology/Health Science grad",
   className: "WEB12",
-  favSubjects: ["CSS", "React", "Ternaries", "SQL", "Node"]
+  favSubjects: ["CSS", "React", "Ternaries", "SQL", "Node"],
+  score: 40
 });
 
 joseph.speak();
@@ -119,3 +148,5 @@ josh.grade(joseph, "JavaScript Fundementals");
 josh.speak();
 vinny.speak();
 liz_B.sprintChallenge("css");
+vinny.determineGrade(liz_B, "CSS");
+liz_B.graduate();
